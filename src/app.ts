@@ -1,6 +1,6 @@
 import express from "express";
 import { connectMongo } from "./config/mongo";
-import { errorHandler } from "./middleware/error";
+import { errorHandler } from "./middlewares/error";
 import claimsRouter from "./routes/claim";
 
 export async function createApp() {
