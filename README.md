@@ -1,4 +1,4 @@
-# Korr Backend – Home Assessment
+# Backend – Assessment
 
 ## This is a backend API for **uploading, validating, and querying healthcare claims** from CSV files.
 
@@ -99,7 +99,7 @@ src/
 - **Repository pattern** → decouples persistence from business logic.
   Mongo is used in production, InMemory repo for tests/dev.
 
-- Mongo was chosen because simplifies storage and queries without the extra complexity of relational schemas and joins.
+- Mongo was chosen because simplifies storage and queries without extra complexity of relational schemas and joins.
 
 - **Validation** → `validateClaimRow.ts` checks CSV rows, `validateFilters.ts` checks API params.
 
@@ -121,7 +121,7 @@ src/
 
 ---
 
-## Improvements
+## Main improvements
 
 - Add pagination for `/claims` (to handle large result sets)
 - Async ingestion (e.g. BullMQ, SQS) for large CSVs with background workers;
