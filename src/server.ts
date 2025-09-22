@@ -1,7 +1,14 @@
-import app from "./app";
+import "dotenv/config";
 
-const PORT = process.env.PORT || 3000;
+import { createApp } from "./app";
+import { CONFIG } from "./config/env";
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+async function start() {
+  const app = await createApp();
+
+  app.listen(CONFIG.PORT, () => {
+    console.log(`Server running on port ${CONFIG.PORT}`);
+  });
+}
+
+start();
