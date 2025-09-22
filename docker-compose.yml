@@ -1,0 +1,26 @@
+services:
+  app:
+    build: .
+    container_name: korr-backend
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_DB_NAME=${MONGO_DB_NAME}
+      - NODE_ENV=${NODE_ENV:-development}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    container_name: korr-mongo
+    restart: always
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
