@@ -1,13 +1,20 @@
 import express from "express";
+import { connectMongo } from "./config/mongo";
+import { errorHandler } from "./middleware/error";
+import claimsRouter from "./routes/claim";
 
-const app = express();
+export async function createApp() {
+  const app = express();
 
-app.use(express.json());
+  app.use(express.json());
 
-const claims = [];
+  if (process.env.NODE_ENV !== "test") {
+    await connectMongo();
+  }
 
-app.get("/claims", (req, res) => {
-  return res.json(claims);
-});
+  app.use("/claims", claimsRouter);
 
-export default app;
+  app.use(errorHandler);
+
+  return app;
+}
